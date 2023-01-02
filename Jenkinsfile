@@ -32,13 +32,14 @@ pipeline {
         script{
            docker.image(registry + ":$BUILD_NUMBER").run('-d ')
         }
+        when(stageResult:"FAILURE"){
+          docker container rm $(docker container ps -aq)
+        }
+      
+    
       }
     }
-    if(currentBuild.result = 'FAILURE'){
-      steps{
-        docker container rm $(docker container ps -aq)
-      }
-    }
+    
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
