@@ -30,7 +30,7 @@ pipeline {
     stage('Deploy Image'){
       steps{
         script{
-          docker run --rm -it $registry:$BUILD_NUMBER 
+          docker run --rm -it registry + ":$BUILD_NUMBER" 
         }
       }
     }
