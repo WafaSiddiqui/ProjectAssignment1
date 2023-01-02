@@ -30,16 +30,18 @@ pipeline {
     stage('Run') {
       steps{
         script{
-           docker.image(registry + ":$BUILD_NUMBER").run('-d ')
+           def container_runner = docker.image(registry + ":$BUILD_NUMBER").run('-d ')
         }
-        when(stageResult:"FAILURE"){
-          docker rm -f $(docker ps -a -q)
-        }
+       
       
     
       }
     }
-    
+    when(stageResult:"FAILURE"){
+      script{
+        container_runner.stop()
+      }
+    }
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
