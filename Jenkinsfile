@@ -27,13 +27,6 @@ pipeline {
         }
       }
     }
-    stage('Deploy Image'){
-      steps{
-        script{
-          docker run --rm -it registry + ":$BUILD_NUMBER" 
-        }
-      }
-    }
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
