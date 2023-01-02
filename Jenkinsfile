@@ -8,6 +8,7 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
+                    sudo chmod 666 /var/run/docker.sock
                     sh 'docker build -t wafasidd/dockerfile1image:v2 .'
                 }
             }
