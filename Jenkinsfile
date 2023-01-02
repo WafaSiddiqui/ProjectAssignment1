@@ -8,7 +8,15 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
-                    docker.build registry + ":$BUILD_NUMBER"
+                    sh 'docker build -t wafasidd/dockerfile1image:v2 .'
+                }
+            }
+        }
+        stage('Push Image to Docker Hub'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push wafasidd/dockerfile1image:v2'
                 }
             }
         }
