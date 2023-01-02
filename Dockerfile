@@ -13,7 +13,7 @@ RUN apt-get install -y php7.0 libapache2-mod-php7.0 php7.0-cli php7.0-common php
 
 #Copy Application Files
 RUN rm -rf /var/www/html/*
-COPY projCert/website /var/www/html/
+COPY website /var/www/html/
 
 #Open port 80
 EXPOSE 8080
