@@ -18,12 +18,19 @@ pipeline {
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Push Image') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
+        }
+      }
+    }
+    stage('Deploy Image'){
+      steps{
+        script{
+          docker run --rm -it $registry:$BUILD_NUMBER 
         }
       }
     }
