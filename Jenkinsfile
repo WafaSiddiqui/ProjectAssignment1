@@ -7,7 +7,9 @@ pipeline {
     stages {
         stage('Change Mode'){
             steps{
-                sudo chmod 666 /var/run/docker.sock
+                script{
+                    sudo chmod 666 /var/run/docker.sock
+                }
             }
         }
         stage('Building image') {
