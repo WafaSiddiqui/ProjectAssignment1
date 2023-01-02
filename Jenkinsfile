@@ -33,6 +33,7 @@ pipeline {
            docker.image(registry + ":$BUILD_NUMBER").run('-d ')
         }
       }
+    }
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
