@@ -1,8 +1,9 @@
 #!groovy
 
 pipeline {
-	agent none  stages {
-  	stage('Cloning our Git') { 
+	agent none  
+ stages {
+   stage('Cloning our Git') { 
           steps { 
               git 'https://github.com/WafaSiddiqui/ProjectAssignment1.git' 
 
