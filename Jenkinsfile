@@ -5,13 +5,7 @@ pipeline {
     }  
     agent any  
     stages {
-        stage('Change Mode'){
-            steps{
-                script{
-                    sudo chmod 666 /var/run/docker.sock
-                }
-            }
-        }
+        
         stage('Building image') {
             steps{
                 script {
