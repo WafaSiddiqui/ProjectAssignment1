@@ -32,7 +32,7 @@ pipeline {
         script{
            def container_runner = docker.image(registry + ":$BUILD_NUMBER").run('-d ')
         }
-        when(stageResult:"FAILURE"){
+        stage(currentBuild:"FAILURE"){
           script{
             container_runner.stop()
           }
