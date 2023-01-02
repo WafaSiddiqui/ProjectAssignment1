@@ -3,12 +3,8 @@
 pipeline {
 	  
  stages {
-   stage('Cloning our Git') { 
-          steps { 
-              git 'https://github.com/WafaSiddiqui/ProjectAssignment1.git' 
-
-            }
-
+   stage('Checkout') {
+            git url: 'https://github.com/saurabh0010/sample-spring-microservices.git'
         }
     stage('Docker Build') {
     	
