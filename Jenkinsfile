@@ -33,7 +33,7 @@ pipeline {
            docker.image(registry + ":$BUILD_NUMBER").run('-d ')
         }
         when(stageResult:"FAILURE"){
-          docker container rm $(docker container ps -aq)
+          docker rm -f $(docker ps -a -q)
         }
       
     
